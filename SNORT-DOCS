@@ -1,0 +1,55 @@
+INSTALL SNORT TO WINDOWS SERVER
+
+DEPLOY 2 VIRTUAL WINDOWS SERVER ON VMWARE1
+
+1 - WINDOWS SERVER FOR END DEVICE
+1 - WINDOW SERVER FOR SNORT
+
+TURN OFF FIREWALL BOTH  SERVER
+
+@WINDOWS SNORT
+*INSTALL WINRAR to WINDOWS SNORT
+*TRANSFER THE SNORT FOLDER TO WINDOWS SNORT 
+
+1. EXTRACT the SNORT FOLDER AND INSTALL THE NMAP, NPCAP, SNORT and NOTEPAD++
+
+@SNORT.CONFIG FOLDER
+2. EDIT THE IP ADDRESS of SNORT.CONF to THE IP ADDRESS OF END DEVICE (lINE 45)
+
+3. COPY THE SNORT.CONF FILE FROM SNORT_CONFIG FOLDER AND PASTE TO SNORT ETC. ( DRIVE C - SNORT - ETC )
+
+4.GO TO SNORT_CONFIG FOLDER - SNORTRULES-SNAPSHOT - RULES - COPY ALL THE RULES INSIDE THE RULES FOLDER AND PASTE IT TO
+(DRIVE C - SNORT - RULES )
+
+
+@CMD OF WINDOWS SNORT
+
+cd \snort\bin
+
+snort -W
+snort -V
+
+(TESTING)
+snort -i 1 -c c:\Snort\etc\snort.conf -T
+
+(RUN)
+snort -i 1 -c c:\Snort\etc\snort.conf -A console
+
+
+***********************************
+
+C: -> Snort -> etc -> 
+
+snort.config
+
+***********************************
+C: -> Snort -> rules -> local.rules
+
+local.rules
+
+
+
+TO STOP
+(CTRL + C ) x2
+
+LINK: ( https://drive.google.com/drive/u/1/folders/1-b9a0WzKXwc_-k970MOvpI26nlr0tk9b ) 
