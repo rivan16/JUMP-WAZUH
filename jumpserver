@@ -1,0 +1,32 @@
+https://www.jumpserver.com/docs/installation
+***********************
+sudo dnf update -y
+***********************
+curl -sSL https://github.com/jumpserver/jumpserver/releases/latest/download/quick_start.sh | bash
+***********************
+http://your-jumpserver-ip/
+
+Username: admin
+Password: ChangeMe
+#############################################################
+OR
+
+yum update curl openssl
+dnf install wget
+wget https://github.com/jumpserver/jumpserver/releases/latest/download/quick_start.sh -O quick_start.sh
+cat quick_start.sh
+chmod +x quick_start.sh
+./quick_start.sh
+
+
+https://www.jumpserver.com/docs/quickstart
+https://www.jumpserver.com/docs/installation
+
+http://your-jumpserver-ip/
+
+
+Username: admin
+Password: ChangeMe
+
+Quickstart Guide - JumpServer
+Installation - JumpServer
