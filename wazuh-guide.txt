@@ -36,6 +36,9 @@ Go to manage (CLICK start) then refresh
 
 7.Go back to wazuh server gui Click "close"
 
-8.
+*****Be sure to disable Real-time Protection and Firewall on Windows Defender and any security option that may block suspicious files on your browser of choice for the testing purposes!***
+
+8. ENABLING FILE INTEGRITY MONITORING FOR DIRECTORIES
+
 
 
