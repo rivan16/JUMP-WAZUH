@@ -1,0 +1,41 @@
+1. DOWNLOAD THE wazuh server and wazuh agent
+
+2. OPEN VMWARE deploy windows server 2022 and Wazuh server
+
+3. Install Vmware tools to Windows server 2022
+
+4. After installing the vmware tools to win server 2022 - drag the wazuh agent to windows server 2022 virtual then install
+
+5. Login to your wazuh-server
+un: wazuh-user
+pass: wazuh
+
+Type: ip addr
+
+to get the ip address and open any browser (https://0.0.0.0)
+
+  
+GUI login
+un: admin
+pass: admin
+
+6. Deploy agent 
+Go to Server managemnet -> Endpoints Summary -> Click "Deploy New Agent"
+
+SELECT WINDOWS
+Server address: IP of windows server
+Agent name: Agent1
+
+COPY THE COMMANDS TO STEP 4: Run the following commands to download and install the agent:
+PASTE it to windows server in CMD (powershell)
+
+DO the same to STEP 5:Copy and paste the script to windows server cmd powershell
+
+OPEN wazuh agent type the ip address of Wazuh server then click save  
+Go to manage (CLICK start) then refresh 
+
+7.Go back to wazuh server gui Click "close"
+
+8.
+
+
