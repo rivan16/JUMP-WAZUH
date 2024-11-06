@@ -1,3 +1,35 @@
+What is SIEM?
+SIEM stands for Security Information and Event Management. It’s like a smart security system for a company’s computers and networks.
+
+Imagine a big room with lots of computers and devices. Every device (like your laptop, printer, or server) sends out signals or messages about what’s happening—like when someone logs in, opens a file, or tries to connect to the internet.
+
+What Does SIEM Do?
+Collects Information: SIEM gathers all these messages (also called "logs") from different devices in one place.
+Monitors for Problems: It watches these logs to look for anything unusual or suspicious, like someone trying to hack into the system or accessing something they shouldn't.
+Sends Alerts: If SIEM finds something bad, it sends an alert to the security team, letting them know what’s happening so they can fix it.
+Helps Investigate: SIEM keeps a record of all the logs. So, if a company thinks something bad happened, they can look back and see exactly what occurred.
+Why Is SIEM Important?
+It’s like having a security guard that watches over all the computers and networks 24/7, making sure everything is safe. And if something goes wrong, the guard sounds the alarm right away!
+
+Example:
+Without SIEM: A company might have trouble knowing if someone is trying to hack them because all their devices are sending logs separately.
+With SIEM: All the information comes together in one place, making it easier to spot problems quickly.
+In Summary:
+SIEM helps organizations stay safe by collecting, monitoring, and analyzing all security-related activities across their computers and networks in real-time. It keeps an eye out for bad guys trying to break in!
+
+*Splunk
+*IBM QRadar
+*ArcSight (by Micro Focus)
+*AlienVault (now AT&T Cybersecurity)
+*LogRhythm
+*Securonix
+*Elastic SIEM
+*McAfee Enterprise Security Manager (ESM)
+*Graylog
+*OSSIM (Open Source Security Information Management)
+
+**********************************************************************************************************************************************************************************************************************
+
 1. DOWNLOAD THE wazuh server and wazuh agent
 
 2. OPEN VMWARE deploy windows server 2022 and Wazuh server
@@ -36,9 +68,36 @@ Go to manage (CLICK start) then refresh
 
 7.Go back to wazuh server gui Click "close"
 
-*****Be sure to disable Real-time Protection and Firewall on Windows Defender and any security option that may block suspicious files on your browser of choice for the testing purposes!***
+*****Be sure to disable Real-time Protection and Firewall on Windows Defender and any security option that may block suspicious files on your browser of choice for the testing purposes!*****
 
 8. ENABLING FILE INTEGRITY MONITORING FOR DIRECTORIES
 
+File Integrity Monitoring (FIM) is a security process that checks and monitors files and directories on a system for changes, such as modifications, deletions, or additions. The goal of FIM is to detect unauthorized or suspicious activity that might indicate a security breach or malicious behavior.
+
+How FIM Works:
+Baseline Creation: FIM first creates a snapshot (baseline) of important files' current state. This includes file attributes like size, permissions, hashes (such as SHA or MD5), and more.
+
+Ongoing Monitoring: After the baseline is set, the system continuously monitors these files and compares their current state to the baseline.
+
+Alerting on Changes: If any unauthorized or unexpected changes are detected—such as someone modifying a file or deleting it—FIM generates an alert to notify administrators.
+
+Common Use Cases:
+Monitoring system and configuration files.
+Detecting malware infections or file tampering.
+Ensuring compliance with security regulations.
+In summary, FIM helps to ensure that critical files remain unchanged unless authorized, providing a safeguard against cyberattacks or accidental damage.
+
+9. Go to Windows server - open agent - click view - view config 
+PASTE THIS COMMAND/SCRIPT: UNDER " \SysNative</directories> "
+
+<directories realtime="yes" check_all="yes" report_changes="yes" recursion_level="10">c:\Users\Administrator\Downloads </directories>
+
+THEN RESTART THE WAZUH AGENT 
+
+TRY TO CREATE FILES IN DOWNLOADS:
+
+GO TO WAZUH SERVER GUI - Endpoint Security - File Interity Monitoring - Change the date to TODAY
+
+**********************************************************************************************************************************************************************************************************************
 
 
