@@ -45,8 +45,7 @@ pass: wazuh
 Type: ip addr
 
 to get the ip address and open any browser (https://0.0.0.0)
-
-  
+ 
 GUI login
 un: admin
 pass: admin
@@ -147,7 +146,212 @@ Go to Windows server open the Wazuh agent - Manage - Click Restart
 Turn on the Windows Defender Real time Protection - Try to Download Malware from " https://www.eicar.org/download-anti-malware-testfile/ "
 It should be reporting to Wazuh server gui - ( Threat Intillegence -  Threat hunting - Change the date " Today" )
 
+12. INTEGRATING SYSMON TO DETECT FILELESS MALWARE
+Integrating Sysmon with Wazuh enables detection of fileless malware by providing detailed logs on system activity, including process creation, network connections, and in-memory code execution. Fileless malware typically operates in memory, avoiding traditional file-based detection. Sysmon captures in-depth behavioral data, which Wazuh can analyze for suspicious patterns indicative of fileless attacks. 
+
+Go to Windows server open browser download this " https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon " then extract on the same directory
+
+Go to this link " https://github.com/SwiftOnSecurity/sysmon-config " click the cod ( green color ) then click Download - Also extract afte downloading
+
+Open the folder " sysmon-config master " copy all the files then paste it to  " Sysmon Folder "
+
+Then Open CMD PowerShell - go to the directory of " sysmon folder " ( C:\Users\Administrator\Downloads\Sysmon ) then paste this command to CMD Powershell ( .\sysmon.exe -accepteula -i sysmonconfig-export.xml )
+
+OUTPUT TO CMD:
+System Monitor v15.15 - System activity monitor
+By Mark Russinovich and Thomas Garnier
+Copyright (C) 2014-2024 Microsoft Corporation
+Using libxml2. libxml2 is Copyright (C) 1998-2012 Daniel Veillard. All Rights Reserved.
+Sysinternals - www.sysinternals.com
+
+Loading configuration file with schema version 4.50
+Sysmon schema version: 4.90
+Configuration file validated.
+Sysmon installed.
+SysmonDrv installed.
+Starting SysmonDrv.
+SysmonDrv started.
+Starting Sysmon..
+Sysmon started.
+
+To Check go to windows server - Event viewer - Applications and Services Logs > Microsoft > Windows > Sysmon > Operational
+
+Go to Wazuh server GUI - SERVER MANAGEMENT -> ENDPOINT GROUPS -> WINDOWS -> FILES -> agent.conf
+PASTE THIS COMMAND:  LINE 6
+
+<localfile>
+	<location>Microsoft-Windows-Sysmon/Operational</location>
+	<log_format>eventchannel</log_format>
+</localfile>
+
+THEN CLICK SAVE 
+
+Go to Wazuh server GUI - Server Management > Rules > Custom Rules > Add New Rules File - name it " custom_sysmon "
+PASTE THIS COMMAND:
+
+<!-- Log Sysmon Alerts -->
+<group name="sysmon">
+    <rule id="101100" level="5">
+    <if_sid>61650</if_sid>
+    <description>Sysmon - Event 22: DNS Query.</description>
+    <options>no_full_log</options>
+    </rule>
+
+    <rule id="101101" level="5">
+        <if_sid>61603</if_sid>
+        <options>no_full_log</options>
+        <description>Sysmon - Event 1: Process creation.</description>
+    </rule>
+
+    <rule id="101102" level="5">
+        <if_sid>61604</if_sid>
+        <options>no_full_log</options>
+        <description>Sysmon - Event 2: A process changed a file creation time.</description>
+    </rule>
+
+    <rule id="101103" level="5">
+        <if_sid>61605</if_sid>
+        <options>no_full_log</options>
+        <description>Sysmon - Event 3: Network connection.</description>
+    </rule>
+    
+    <rule id="101104" level="5">
+        <if_sid>61606</if_sid>
+        <options>no_full_log</options>
+        <description>Sysmon - Event 4: Sysmon service state changed.</description>
+    </rule>
+
+    <rule id="101105" level="5">
+        <if_sid>61607</if_sid>
+        <options>no_full_log</options>
+        <description>Sysmon - Event 5: Process terminated.</description>
+    </rule>
+
+    <rule id="101106" level="5">
+        <if_sid>61608</if_sid>
+        <options>no_full_log</options>
+        <description>Sysmon - Event 6: Driver loaded.</description>
+    </rule>
+    
+    <rule id="101107" level="5">
+        <if_sid>61609</if_sid>
+        <options>no_full_log</options>
+        <description>Sysmon - Event 7: Image loaded.</description>
+    </rule>
+
+    <rule id="101108" level="5">
+        <if_sid>61610</if_sid>
+        <options>no_full_log</options>
+        <description>Sysmon - Event 8: CreateRemoteThread.</description>
+        </rule>
+
+    <rule id="101109" level="5">
+        <if_sid>61611</if_sid>
+        <options>no_full_log</options>
+        <description>Sysmon - Event 9: RawAccessRead.</description>
+    </rule>
+
+    <rule id="101110" level="5">
+        <if_sid>61612</if_sid>
+        <options>no_full_log</options>
+        <description>Sysmon - Event 10: ProcessAccess.</description>
+    </rule>
+    
+    <rule id="101111" level="5">
+        <if_sid>61613</if_sid>
+        <options>no_full_log</options>
+        <description>Sysmon - Event 11: FileCreate.</description>
+    </rule>
+    
+    <rule id="101112" level="5">
+        <if_sid>61614</if_sid>
+        <options>no_full_log</options>
+        <description>Sysmon - Event 12: RegistryEvent (Object create and delete).</description>
+    </rule>
+    
+    <rule id="101113" level="5">
+        <if_sid>61615</if_sid>
+        <options>no_full_log</options>
+        <description>Sysmon - Event 13: RegistryEvent (Value Set).</description>
+    </rule>
+
+    <rule id="101114" level="5">
+        <if_sid>61616</if_sid>
+        <options>no_full_log</options>
+        <description>Sysmon - Event 14: RegistryEvent (Key and Value Rename).</description>
+    </rule>
+    
+    <rule id="101115" level="5">
+        <if_sid>61617</if_sid>
+        <options>no_full_log</options>
+        <description>Sysmon - Event 15: FileCreateStreamHash.</description>
+    </rule>
+</group>
+
+THEN CLICK SAVE THEN RESTART
+
+An APT simulator is used in cybersecurity to mimic advanced attack techniques to test and improve an organization's defenses. It’s essential for validating security controls, training incident response teams, optimizing threat detection tools, and assessing compliance and risk.
+
+Go to Windows server Turn Off Real time protection then go to this link " https://github.com/NextronSystems/APTSimulator " Click Code - Download ZIP 
+Go to Downloads - Extract the file - then open it - double click the APT Simulator to run the lab - 
+
+Then Go To Wazuh server gui - Threat Intelligence - Threat hunting - You will all the logs made by APT simulator
+
+13. INCIDENT RESPONSE
+BLOCKING POSSIBLE RDP BRUTE-FORCE ATTACKS
+This includes monitoring for repeated login failures, setting alerts for unusual RDP activity, and blocking IP addresses showing suspicious behavior. 
+
+Go to Windows server - Settings - Remote Desktop - Enable Remote Desktop
+Go to Wazuh agent of windows sever - Click view - select view config
+PASTE THIS UNDER " Active Response " :
+
+<command>
+    <name>netsh</name>
+    <executable>netsh.exe</executable>
+    <timeout_allowed>yes</timeout_allowed>
+ </command>
+
+ <active-response>
+    <disabled>no</disabled>
+    <command>netsh</command>
+    <location>local</location>
+    <rules_id>100100</rules_id>
+ </active-response>
+
+THEN SAVE - MANAGE - SELECT RESTART
+
+Go to Wazugh server GUI -  Server Management > Rules > Custom Rules > local_rules.xml
+PASTE THIS COMMAND TO LINE 21:
+
+<group name="rdp">
+    <rule id="100100" level="10" frequency="3" timeframe="120">
+    <if_matched_sid>60122</if_matched_sid>
+    <description>Possible RDP attack: 3 failed logins in a short period of time</description>
+    </rule>
+</group>
+
+CLICK SAVE AND RESTART
+
+Go to Wazuh server GUI - Server Management > Settings > Edit Configuration.
+PASTE THIS COMMAND TO LINE - HIGLIGHT 240-244:
+
+<active-response>
+  <disabled>no</disabled>
+   <command>firewall-drop</command>
+   <location>local</location>
+   <rules_id>5710</rules_id>
+   <timeout>60</timeout>
+</active-response>
+
+CLICK SAVE THEN RESTART
+
+TO TEST THE SIMULATION LAB OPEN VIRUTAL KALI LINUX OPEN TERMINAL
+
+
+
+
 
 **********************************************************************************************************************************************************************************************************************
+
 
 
