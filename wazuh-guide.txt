@@ -346,9 +346,12 @@ PASTE THIS COMMAND TO LINE - HIGLIGHT 240-244:
 CLICK SAVE THEN RESTART
 
 TO TEST THE SIMULATION LAB OPEN VIRUTAL KALI LINUX OPEN TERMINAL
+Open terminal : 
+cd /usr/share/wordlists
 
+hydra -l administrator -P rockyou.txt TARGET_IP_ADDRESS rdp
 
-
+Go to Wazuh server gui to see the logs - threat intillegence - threat hunting
 
 
 **********************************************************************************************************************************************************************************************************************
