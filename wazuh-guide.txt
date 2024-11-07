@@ -121,6 +121,33 @@ DOWNLOAD SOME MALWARE FOR LABS ONLY
 
 THEN GO TO WAZUH GUI - THREAT INTELLIGENCE - THREAT HUNTING
 
+11. INTEGRATING WINDOWS DEFENDER LOGS
+Integrating Windows Defender logs in Wazuh allows you to centrally monitor, analyze, and respond to security events detected by Windows Defender across multiple systems.
+
+Go to wazuh sever GUI
+
+Serve management - Endpoint Groups - Click " Add new Groups " name it " windows" then save groups
+
+Click the "windows" groups that you created - Click " Manage Agents" add the Window server endpoint
+
+Go to FILES tab katabi ng Agent tab under windows groups - Click Edit sign of  "Agent.conf"
+PASTE THIS COMMAND:
+
+<agent_config>
+<localfile>
+	<location>Microsoft-Windows-Windows Defender/Operational</location>
+	<log_format>eventchannel</log_format>
+</localfile>
+</agent_config>
+
+THEN CLICK SAVE
+
+Go to Windows server open the Wazuh agent - Manage - Click Restart
+
+Turn on the Windows Defender Real time Protection - Try to Download Malware from " https://www.eicar.org/download-anti-malware-testfile/ "
+It should be reporting to Wazuh server gui - ( Threat Intillegence -  Threat hunting - Change the date " Today" )
+
+
 **********************************************************************************************************************************************************************************************************************
 
 
