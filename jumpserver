@@ -33,3 +33,17 @@ Installation - JumpServer
 
 
 https://coda.io/d/_dycCZ3mNPF_/INSTALL-JUMPSERVER-TO-ROCKY-LINUX-9_suyVkpyL
+
+
+*****************************************************************************
+A jump server (sometimes called a bastion host) is important because it acts as a secure gateway to access other computers or systems in a network. Here’s why it’s so useful:
+
+*Security: Instead of allowing people to directly access important systems, the jump server controls and limits who can get in. It makes sure that only trusted users can access sensitive data or systems, and all access goes through a monitored point.
+
+*Centralized Access: Rather than having multiple entry points, all access goes through the jump server. This makes it easier to manage and track who’s accessing what, and when.
+
+*Reduced Risk: If someone tries to hack into your system, the jump server can act as a barrier, preventing direct attacks on other critical systems in your network.
+
+*Audit and Monitoring: Jump servers are great for logging and monitoring. You can keep track of everything happening in and out of your network, which helps detect any suspicious activity.
+
+In simple terms: a jump server is like a guarded gate to your network, ensuring that only trusted people pass through and helping to keep your systems safe!
