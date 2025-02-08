@@ -67,4 +67,23 @@ Why is SIEM Important?
 In Simple Terms:
 Think of SIEM as a security dashboard for your entire network. It helps organizations quickly spot suspicious activities, make sense of security data, and stay protected. It's like a “watchdog” that never sleeps, monitoring for signs of trouble and alerting you when needed.
 
-Let me know if you'd like more details on a specific part of SIEM or examples of how it works!
+
+
+
+******************************************************************************
+JUMPSERVER:
+
+*Security: Instead of allowing people to directly access important systems, the jump server controls and limits who can get in. 
+*Centralized Access: Rather than having multiple entry points, all access goes through the jump server.
+*Audit and Monitoring: Jump servers are great for logging and monitoring.
+
+SIEM:
+
+What Does SIEM Do?
+Collects Information: SIEM gathers all these messages (also called "logs") from different devices in one place.
+Monitors for Problems: It watches these logs to look for anything unusual or suspicious, like someone trying to hack into the system or accessing something they shouldn't.
+Sends Alerts: If SIEM finds something bad, it sends an alert to the security team, letting them know what’s happening so they can fix it.
+Helps Investigate: SIEM keeps a record of all the logs. So, if a company thinks something bad happened, they can look back and see exactly what occurred.
+
+
+
