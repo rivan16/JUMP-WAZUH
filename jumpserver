@@ -85,5 +85,11 @@ Monitors for Problems: It watches these logs to look for anything unusual or sus
 Sends Alerts: If SIEM finds something bad, it sends an alert to the security team, letting them know what’s happening so they can fix it.
 Helps Investigate: SIEM keeps a record of all the logs. So, if a company thinks something bad happened, they can look back and see exactly what occurred.
 
+EDR- Endpoint Detection and Response
+XDR- Extended  Detection and  Response
+
+SIEM and XDR can complement each other. SIEM handles log management, regulatory compliance, and overall security monitoring, 
+while XDR enhances the detection and response capabilities with advanced analytics, automated actions, and broader visibility.
+
 
 
